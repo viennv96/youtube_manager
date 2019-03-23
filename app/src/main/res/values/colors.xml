@@ -7,4 +7,6 @@
     <color name="whiteColor">#ffffff</color>
     <color name="red">#FF0000</color>
     <color name="blue">#0009FF</color>
+    <color name="black">#000</color>
+    <color name="photo_tint">#38101010</color>
 </resources>

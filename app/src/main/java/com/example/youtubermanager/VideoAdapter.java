@@ -18,10 +18,8 @@
 package com.example.youtubermanager;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -97,13 +95,6 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
         videoStats.onFinish(new VideoStats.OnTaskCompleted() {
             @Override
             public void onTaskCompleted(Statistics stats) {
-
-                String body = "Views: " + stats.getViewCount() + "\n" +
-                        "Like: " + stats.getLikeCount() + "\n" +
-                        "Dislike: " + stats.getDislikeCount() + "\n" +
-                        "Number of comment: " + stats.getCommentCount() + "\n" +
-                        "Number of favourite: " + stats.getFavoriteCount();
-
                 viewHolder.view.setText(validate.validateNumber(stats.getViewCount()) + " views");
                 viewHolder.like.setText(validate.validateNumber(stats.getLikeCount()) + " like");
                 viewHolder.dislike.setText(validate.validateNumber(stats.getDislikeCount()) + " dislike");
