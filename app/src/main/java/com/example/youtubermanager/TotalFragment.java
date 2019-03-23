@@ -13,6 +13,7 @@ import java.util.List;
 public class TotalFragment extends Fragment {
     private ListView listView;
     private List<YoutubeChannel> listChannel;
+    private final String TITLE = "TOTAL";
     View view;
 
     @Nullable
@@ -22,7 +23,7 @@ public class TotalFragment extends Fragment {
 
         listView = view.findViewById(R.id.listView_id);
         DBAccess db = DBAccess.getInstance(getContext());
-        listChannel = db.getAllChannel();
+        listChannel = db.getChannel(TITLE);
         YoutubeChannelAdapter channelAdapter = new YoutubeChannelAdapter(this.getActivity(), listChannel);
         listView.setAdapter(channelAdapter);
         return view;
@@ -30,7 +31,7 @@ public class TotalFragment extends Fragment {
 
     @Override
     public String toString() {
-        String title="TOTAL";
+        String title=TITLE;
         return title;
     }
 }

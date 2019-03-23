@@ -10,6 +10,7 @@ import java.util.List;
 public class ViewChannelAdapter extends FragmentPagerAdapter {
 
     List<Fragment> list = new ArrayList<>();
+
     ViewChannelAdapter(FragmentManager fm) {
         super(fm);
     }

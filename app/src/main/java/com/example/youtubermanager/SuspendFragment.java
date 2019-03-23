@@ -15,6 +15,7 @@ import java.util.List;
 public class SuspendFragment extends Fragment {
     private ListView listView;
     private List<YoutubeChannel> listChannel = new ArrayList<>();
+    private final String TITLE = "DIE";
     View view;
 
     @Nullable
@@ -24,7 +25,7 @@ public class SuspendFragment extends Fragment {
 
         listView = view.findViewById(R.id.listView_id);
         DBAccess db = DBAccess.getInstance(getContext());
-        listChannel = db.getDieChannel();
+        listChannel = db.getChannel(TITLE);
         YoutubeChannelAdapter channelAdapter = new YoutubeChannelAdapter(this.getActivity(), listChannel);
         listView.setAdapter(channelAdapter);
         return view;

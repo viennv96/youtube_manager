@@ -35,9 +35,32 @@ public class DBAccess {
         }
     }
 
-    public List<YoutubeChannel> getAllChannel(){
+    /**
+     * get list of chanel from db
+     * @param status ALL
+     * @return list all channel
+     * @param status "LIVE"
+     * @return only live channel
+     * @param status "DIE"
+     * @return only die channel
+     */
+    public List<YoutubeChannel> getChannel(String status){
         List<YoutubeChannel> list = new ArrayList<>();
         String query = "SELECT * FROM YoutubeChannel";
+        switch (status){
+            case "ALL":
+                //do nothing
+                break;
+            case "LIVE":
+                query += " WHERE LIVE = '1'";
+                    break;
+            case "DIE":
+                query += " WHERE LIVE = '0'";
+                break;
+                default:
+                    //do nothing
+                    break;
+        }
         open();
         c=database.rawQuery(query, null);
         while(c.moveToNext()){
@@ -58,49 +81,82 @@ public class DBAccess {
         return list;
     }
 
-    public List<YoutubeChannel> getLiveChannel(){
-        List<YoutubeChannel> list = new ArrayList<>();
-        String query = "SELECT * FROM YoutubeChannel WHERE live = '1'";
+    /**
+     * get number of chanel from db
+     * @param status ALL
+     * @return list all channel
+     * @param status "LIVE"
+     * @return only live channel
+     * @param status "DIE"
+     * @return only die channel
+     */
+    public int getNumberChannel(String status){
+        String query = "SELECT COUNT (*) FROM YoutubeChannel";
+        switch (status){
+            case "ALL":
+                //do nothing
+                break;
+            case "LIVE":
+                query += " WHERE LIVE = '1'";
+                break;
+            case "DIE":
+                query += " WHERE LIVE = '0'";
+                break;
+            default:
+                //do nothing
+                break;
+        }
         open();
         c=database.rawQuery(query, null);
-        while(c.moveToNext()){
-            YoutubeChannel channel = new YoutubeChannel();
-            channel.setUrlChannel(c.getString(0));
-            channel.setName(c.getString(1));
-            channel.setAvatar(c.getString(2));
-            channel.setPlaylist(c.getInt(c.getColumnIndex("playlist")));
-            channel.setView(c.getInt(4));
-            channel.setSubscribe(c.getInt(5));
-            channel.setVideos(c.getInt(6));
-            channel.setPublicDate(c.getString(7));
-            channel.setNotification(c.getString(8));
-            channel.setLive(c.getString(9));
-            list.add(channel);
+        while (c.moveToNext()){
+            return c.getInt(0);
         }
-        close();
-        return list;
+        return 0;
     }
 
-    public List<YoutubeChannel> getDieChannel(){
-        List<YoutubeChannel> list = new ArrayList<>();
-        String query = "SELECT * FROM YoutubeChannel WHERE live = '0'";
-        open();
-        c=database.rawQuery(query, null);
-        while(c.moveToNext()){
-            YoutubeChannel channel = new YoutubeChannel();
-            channel.setUrlChannel(c.getString(0));
-            channel.setName(c.getString(1));
-            channel.setAvatar(c.getString(2));
-            channel.setPlaylist(c.getInt(c.getColumnIndex("playlist")));
-            channel.setView(c.getInt(4));
-            channel.setSubscribe(c.getInt(5));
-            channel.setVideos(c.getInt(6));
-            channel.setPublicDate(c.getString(7));
-            channel.setNotification(c.getString(8));
-            channel.setLive(c.getString(9));
-            list.add(channel);
-        }
-        close();
-        return list;
-    }
+//    public List<YoutubeChannel> getLiveChannel(){
+//        List<YoutubeChannel> list = new ArrayList<>();
+//        String query = "SELECT * FROM YoutubeChannel WHERE live = '1'";
+//        open();
+//        c=database.rawQuery(query, null);
+//        while(c.moveToNext()){
+//            YoutubeChannel channel = new YoutubeChannel();
+//            channel.setUrlChannel(c.getString(0));
+//            channel.setName(c.getString(1));
+//            channel.setAvatar(c.getString(2));
+//            channel.setPlaylist(c.getInt(c.getColumnIndex("playlist")));
+//            channel.setView(c.getInt(4));
+//            channel.setSubscribe(c.getInt(5));
+//            channel.setVideos(c.getInt(6));
+//            channel.setPublicDate(c.getString(7));
+//            channel.setNotification(c.getString(8));
+//            channel.setLive(c.getString(9));
+//            list.add(channel);
+//        }
+//        close();
+//        return list;
+//    }
+
+//    public List<YoutubeChannel> getDieChannel(){
+//        List<YoutubeChannel> list = new ArrayList<>();
+//        String query = "SELECT * FROM YoutubeChannel WHERE live = '0'";
+//        open();
+//        c=database.rawQuery(query, null);
+//        while(c.moveToNext()){
+//            YoutubeChannel channel = new YoutubeChannel();
+//            channel.setUrlChannel(c.getString(0));
+//            channel.setName(c.getString(1));
+//            channel.setAvatar(c.getString(2));
+//            channel.setPlaylist(c.getInt(c.getColumnIndex("playlist")));
+//            channel.setView(c.getInt(4));
+//            channel.setSubscribe(c.getInt(5));
+//            channel.setVideos(c.getInt(6));
+//            channel.setPublicDate(c.getString(7));
+//            channel.setNotification(c.getString(8));
+//            channel.setLive(c.getString(9));
+//            list.add(channel);
+//        }
+//        close();
+//        return list;
+//    }
 }

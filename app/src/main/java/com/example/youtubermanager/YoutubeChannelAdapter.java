@@ -1,6 +1,5 @@
 package com.example.youtubermanager;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
@@ -26,10 +24,6 @@ public class YoutubeChannelAdapter extends BaseAdapter {
         this.list = list;
     }
 
-    public String getUrlChannel(int position){
-        return list.get(position).getUrlChannel();
-    }
-
     @Override
     public int getCount() {
         return list.size();
@@ -37,7 +31,7 @@ public class YoutubeChannelAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return position;
+        return list.get(position);
     }
 
     @Override
@@ -67,10 +61,11 @@ public class YoutubeChannelAdapter extends BaseAdapter {
 
         YoutubeChannel channel = list.get(position);
         name.setText(channel.getName());
-        playlist.setText(validateNumber(channel.getPlaylist()) + " playlist");
-        view.setText(validateNumber(channel.getView()) + " views");
-        sub.setText(validateNumber(channel.getSubscribe())+ " sub");
-        videos.setText(validateNumber(channel.getVideos()) + " videos");
+        Validate validate = new Validate();
+        playlist.setText(validate.validateNumber(channel.getPlaylist()) + " playlist");
+        view.setText(validate.validateNumber(channel.getView()) + " views");
+        sub.setText(validate.validateNumber(channel.getSubscribe())+ " sub");
+        videos.setText(validate.validateNumber(channel.getVideos()) + " videos");
         publicDate.setText(channel.getPublicDate());
         try{
             Picasso.get().load(channel.getAvatar()).into(avatar);
@@ -79,18 +74,5 @@ public class YoutubeChannelAdapter extends BaseAdapter {
         }
 
         return convertView;
-    }
-
-    String validateNumber(int number){
-        DecimalFormat df = new DecimalFormat("#.##");
-        if(number < 10000){
-            return String.valueOf(number);
-        }else if(number > 9999 && number < 1000000){
-            return df.format((float)number/1000) + "K";
-        }else if (number > 999999 && number < 1000000000){
-            return df.format((float)number/1000000) + "M";
-        }else {
-            return df.format((float)number/1000000000) + "B";
-        }
     }
 }

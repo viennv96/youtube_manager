@@ -25,84 +25,84 @@
     <TextView
         android:id="@+id/name_id"
         android:layout_width="279dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:text="Channel Name"
-        android:textColor="@color/red"
-        android:textSize="22dp"
+        android:textColor="@color/blue"
+        android:textSize="19dp"
         android:textStyle="bold"
-        android:layout_marginLeft="130dp"/>
+        android:layout_marginLeft="125dp"/>
 
     <ImageView
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:src="@drawable/ic_playlists"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="130dp" />
-    <TextView
-        android:id="@+id/playlist_id"
-        android:layout_width="88dp"
-        android:layout_height="wrap_content"
-        android:text="1000 views"
-        android:textColor="@color/blackColor"
-        android:textSize="13dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginLeft="156dp"/>
-
-    <ImageView
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginLeft="130dp"
-        android:layout_marginTop="60dp"
-        android:src="@drawable/ic_views" />
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ic_views"
+        android:layout_marginTop="52dp"
+        android:layout_marginLeft="125dp" />
     <TextView
         android:id="@+id/view_id"
-        android:layout_width="88dp"
+        android:layout_width="115dp"
         android:layout_height="wrap_content"
         android:text="1000 views"
         android:textColor="@color/blackColor"
         android:textSize="13dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginLeft="156dp"/>
+        android:layout_marginTop="55dp"
+        android:layout_marginLeft="148dp"/>
 
     <ImageView
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginLeft="130dp"
-        android:layout_marginTop="90dp"
-        android:src="@drawable/ic_people_black_24dp" />
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="125dp"
+        android:layout_marginTop="75dp"
+        android:src="@drawable/ic_thumb_up_black_18dp" />
     <TextView
-        android:id="@+id/subcribe_id"
-        android:layout_width="88dp"
+        android:id="@+id/like_id"
+        android:layout_width="115dp"
         android:layout_height="wrap_content"
         android:text="1000 views"
         android:textColor="@color/blackColor"
         android:textSize="13dp"
-        android:layout_marginTop="93dp"
-        android:layout_marginLeft="156dp"/>
-
+        android:layout_marginTop="77dp"
+        android:layout_marginLeft="148dp"/>
 
     <ImageView
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:src="@drawable/ic_videos"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="245dp"/>
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="125dp"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/ic_thumb_down_black_18dp" />
     <TextView
-        android:id="@+id/videos_id"
-        android:layout_width="87dp"
+        android:id="@+id/dislike_id"
+        android:layout_width="115dp"
         android:layout_height="wrap_content"
         android:text="1000 views"
         android:textColor="@color/blackColor"
         android:textSize="13dp"
-        android:layout_marginTop="31dp"
-        android:layout_marginLeft="275dp"/>
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="148dp"/>
 
 
     <ImageView
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginLeft="245dp"
-        android:layout_marginTop="60dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ic_comments"
+        android:layout_marginTop="55dp"
+        android:layout_marginLeft="265dp"/>
+    <TextView
+        android:id="@+id/comment_id"
+        android:layout_width="115dp"
+        android:layout_height="wrap_content"
+        android:text="1000 views"
+        android:textColor="@color/blackColor"
+        android:textSize="13dp"
+        android:layout_marginTop="55dp"
+        android:layout_marginLeft="288dp"/>
+
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="265dp"
+        android:layout_marginTop="78dp"
         android:src="@drawable/ic_upload_date" />
     <TextView
         android:id="@+id/date_create_id"
@@ -111,8 +111,8 @@
         android:text="1000 views"
         android:textColor="@color/blackColor"
         android:textSize="13dp"
-        android:layout_marginTop="62dp"
-        android:layout_marginLeft="275dp"/>
+        android:layout_marginTop="79dp"
+        android:layout_marginLeft="288dp"/>
 
 
 </RelativeLayout>

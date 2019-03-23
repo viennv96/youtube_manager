@@ -3,7 +3,6 @@ package com.example.youtubermanager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -27,21 +26,17 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Intent intent = new Intent(getApplicationContext(), AddActivity.class);
                 startActivity(intent);
-
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
             }
         });
 
         //view page
         viewPager = findViewById(R.id.viewPage_id);
         ViewChannelAdapter adapter = new ViewChannelAdapter(this.getSupportFragmentManager());
-        adapter.addFragments(new TotalFragment());
         adapter.addFragments(new LiveFragment());
         adapter.addFragments(new SuspendFragment());
+        adapter.addFragments(new TotalFragment());
         viewPager.setAdapter(adapter);
 
         //tab layout
