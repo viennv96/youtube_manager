@@ -117,6 +117,40 @@ public class DBAccess {
         return 0;
     }
 
+    /**
+     * get list of chanel from db
+     * @param status ALL
+     * @return list all channel
+     * @param status "LIVE"
+     * @return only live channel
+     * @param status "DIE"
+     * @return only die channel
+     */
+    public ArrayList<String> getAllUrlChannel(String status){
+        ArrayList<String> urls = new ArrayList<>();
+        String query = "SELECT URL FROM YoutubeChannel";
+        switch (status){
+            case "ALL":
+                //do nothing
+                break;
+            case "LIVE":
+                query += " WHERE LIVE = '1'";
+                break;
+            case "DIE":
+                query += " WHERE LIVE = '0'";
+                break;
+            default:
+                //do nothing
+                break;
+        }
+        open();
+        c=database.rawQuery(query, null);
+        while (c.moveToNext()){
+            urls.add(c.getString(0));
+        }
+        return urls;
+    }
+
     public void addNewChannel(YoutubeChannel channel){
         open();
         ContentValues contentValues = new ContentValues();
@@ -139,6 +173,22 @@ public class DBAccess {
         String clause = "url=?";
         String args[] = new String[] {channelUrl};
         database.delete("YoutubeChannel", clause, args);
+        close();
+    }
+
+    public void updateChannel(YoutubeChannel channel){
+        open();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("name", channel.getName());
+        contentValues.put("avatar", channel.getAvatar());
+        contentValues.put("playlist", channel.getPlaylist());
+        contentValues.put("view", channel.getView());
+        contentValues.put("subscribe", channel.getSubscribe());
+        contentValues.put("videos", channel.getVideos());
+        contentValues.put("publicDate", channel.getPublicDate());
+        contentValues.put("notification", channel.getNotification());
+        contentValues.put("live", channel.getLive());
+        database.update("YoutubeChannel", contentValues, "url=" + "\"" + channel.getUrlChannel() + "\"", null);
         close();
     }
 }

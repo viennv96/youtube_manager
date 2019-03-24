@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +17,7 @@ import com.example.youtubermanager.sqlitedb.DBAccess;
 import com.example.youtubermanager.channel.YoutubeChannelAdapter;
 import com.example.youtubermanager.R;
 import com.example.youtubermanager.entity.YoutubeChannel;
+import com.example.youtubermanager.youtubeparser.ChannelParser;
 
 import java.util.ArrayList;
 
@@ -23,6 +25,8 @@ public class SuspendFragment extends Fragment {
     private RecyclerView recyclerView;
     private ArrayList<YoutubeChannel> listChannel = new ArrayList<>();
     private final String TITLE = "DIE";
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+    YoutubeChannelAdapter channelAdapter;
     View view;
 
     @Nullable
@@ -36,7 +40,7 @@ public class SuspendFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(null));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setHasFixedSize(true);
-        final YoutubeChannelAdapter channelAdapter = new YoutubeChannelAdapter(this.getActivity(), listChannel, R.layout.adapter_channeldetail);
+        channelAdapter = new YoutubeChannelAdapter(this.getActivity(), listChannel, R.layout.adapter_channeldetail);
         recyclerView.setAdapter(channelAdapter);
         channelAdapter.setOnItemClickListener(new YoutubeChannelAdapter.OnItemClickListener() {
             @Override
@@ -52,7 +56,44 @@ public class SuspendFragment extends Fragment {
                 channelAdapter.notifyDataSetChanged();
             }
         });
+
+        mSwipeRefreshLayout = view.findViewById(R.id.container);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary, R.color.colorPrimaryDark);
+        mSwipeRefreshLayout.canChildScrollUp();
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                listChannel.clear();
+                channelAdapter.notifyDataSetChanged();
+                mSwipeRefreshLayout.setRefreshing(true);
+                reloadChannel("DIE");
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
         return view;
+    }
+
+    private void reloadChannel(String status) {
+        DBAccess db2 = DBAccess.getInstance(getContext());
+        ArrayList<String> urls = db2.getAllUrlChannel(status);
+        for(String item:urls){
+            ChannelParser parser = new ChannelParser();
+            String url = parser.generateRequest(item);
+            parser.execute(url);
+            parser.onFinish(new ChannelParser.OnTaskCompleted() {
+                @Override
+                public void onTaskCompleted(YoutubeChannel channel) {
+                    DBAccess db3 = DBAccess.getInstance(getContext());
+                    db3.updateChannel(channel);
+                    channelAdapter.addChannelToList(channel);
+                    channelAdapter.notifyDataSetChanged();
+                }
+                @Override
+                public void onError() {
+                    Toast.makeText(getActivity(), "Error while loading data. Please retry", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
     @Override

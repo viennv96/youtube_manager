@@ -3,13 +3,11 @@ package com.example.youtubermanager.channel;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.youtubermanager.R;
@@ -37,6 +35,10 @@ public class YoutubeChannelAdapter extends RecyclerView.Adapter<YoutubeChannelAd
         Intent intent = new Intent(mContext, VideoActivity.class);
         intent.putExtra("urlChannel", list.get(position).getUrlChannel());
         mContext.startActivity(intent);
+    }
+
+    public void addChannelToList(YoutubeChannel channel){
+        list.add(channel);
     }
 
     @Override

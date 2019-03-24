@@ -20,7 +20,9 @@ package com.example.youtubermanager.video;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +38,7 @@ import com.example.youtubermanager.youtubeparser.models.videos.Video;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 /**
  * Created by marco on 6/15/16.
