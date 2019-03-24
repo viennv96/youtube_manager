@@ -4,9 +4,9 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="blackColor">#000000</color>
-    <color name="whiteColor">#ffffff</color>
+    <color name="whiteColor">#FFFFFF</color>
     <color name="red">#FF0000</color>
     <color name="blue">#0009FF</color>
-    <color name="black">#000</color>
+    <color name="black">#000000</color>
     <color name="photo_tint">#38101010</color>
 </resources>
