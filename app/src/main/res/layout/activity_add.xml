@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".Import.AddActivity">
+
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/appBarLayout2"
+        android:id="@+id/appBarLayout4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="13dp"
+        android:layout_marginBottom="44dp"
         android:theme="@style/AppTheme.AppBarOverlay"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,38 +26,25 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
     </android.support.design.widget.AppBarLayout>
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="@android:style/Widget.Holo.Light.ProgressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:layout_marginBottom="42dp"
-        android:indeterminate="true"
-        android:indeterminateTint="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/btnImport"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_id" />
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="62dp"
+        android:layout_marginBottom="60dp"
         android:contentDescription="@string/todo"
         android:src="@drawable/logo"
         app:layout_constraintBottom_toTopOf="@+id/input_id"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout4" />
 
     <EditText
         android:id="@+id/input_id"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="31dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="27dp"
         android:autofillHints=""
         android:background="@drawable/textview_border"
         android:ellipsize="end"
@@ -63,8 +54,7 @@
         android:maxLines="8"
         android:minLines="8"
         android:scrollbars="vertical"
-        android:scrollHorizontally="false"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar"
+        app:layout_constraintBottom_toTopOf="@+id/btnImport"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -73,25 +63,12 @@
         android:id="@+id/btnImport"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="31dp"
+        android:layout_marginBottom="17dp"
         android:background="@color/colorPrimary"
         android:text="@string/importBtn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
-    <!--
-    <com.google.android.gms.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"/>
-        -->
+        app:layout_constraintTop_toBottomOf="@+id/input_id" />
 
 </android.support.constraint.ConstraintLayout>

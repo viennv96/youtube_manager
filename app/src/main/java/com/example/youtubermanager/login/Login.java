@@ -1,14 +1,10 @@
 package com.example.youtubermanager.login;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -31,8 +27,6 @@ import com.facebook.login.LoginResult;
 import org.json.JSONObject;
 
 import java.net.URL;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 public class Login extends AppCompatActivity {
@@ -75,6 +69,7 @@ public class Login extends AppCompatActivity {
                 pass = password.getText().toString();
                 User user = new User("",username,pass,0,1,"");
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("user",user);
                 startActivity(intent);
             }
