@@ -1,19 +1,28 @@
-package com.example.youtubermanager;
+package com.example.youtubermanager.channel;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
+
+import com.example.youtubermanager.Import.AddActivity;
+import com.example.youtubermanager.channel.fragment.LiveFragment;
+import com.example.youtubermanager.R;
+import com.example.youtubermanager.channel.fragment.SuspendFragment;
+import com.example.youtubermanager.channel.fragment.TotalFragment;
 
 public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
     private TabLayout tabLayout;
     private ViewPager viewPager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
         //view page
         viewPager = findViewById(R.id.viewPage_id);
-        ViewChannelAdapter adapter = new ViewChannelAdapter(this.getSupportFragmentManager());
+        final ViewChannelAdapter adapter = new ViewChannelAdapter(this.getSupportFragmentManager());
         adapter.addFragments(new LiveFragment());
         adapter.addFragments(new SuspendFragment());
         adapter.addFragments(new TotalFragment());

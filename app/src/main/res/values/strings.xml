@@ -14,4 +14,7 @@
     <string name="info_text">This is a simple app that shows the use of YoutubeParser library.
          &lt;br /&gt;&lt;br /&gt;You can find the source code on </string>
     <string name="author">&lt;br /&gt;&lt;br /&gt;Written by Marco Gomiero</string>
+    <string name="sample_input">Sample:
+        \nhttps://www.youtube.com/channel/UCuKacIDMVOgvu23EH5q_Hqw
+        \nhttps://www.youtube.com/user/prasad0sreedhar</string>
 </resources>

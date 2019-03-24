@@ -1,4 +1,4 @@
-package com.example.youtubermanager;
+package com.example.youtubermanager.entity;
 
 public class YoutubeChannel {
     private String urlChannel;
@@ -12,11 +12,8 @@ public class YoutubeChannel {
     private String notification;
     private String live;
 
-    public YoutubeChannel() {
-
-    }
-
     public String getUrlChannel() {
+        urlChannel = this.urlChannel == null ? "" : urlChannel;
         return urlChannel;
     }
 
@@ -25,6 +22,7 @@ public class YoutubeChannel {
     }
 
     public String getName() {
+        name = this.name == null ? "" : name;
         return name;
     }
 
@@ -33,6 +31,7 @@ public class YoutubeChannel {
     }
 
     public String getAvatar() {
+        avatar = this.avatar == null ? "" : avatar;
         return avatar;
     }
 
@@ -73,6 +72,7 @@ public class YoutubeChannel {
     }
 
     public String getPublicDate() {
+        publicDate = this.publicDate == null ? "" : publicDate;
         return publicDate;
     }
 
@@ -81,6 +81,7 @@ public class YoutubeChannel {
     }
 
     public String getNotification() {
+        notification = this.notification == null ? "" : notification;
         return notification;
     }
 

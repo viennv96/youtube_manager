@@ -1,4 +1,4 @@
-package com.example.youtubermanager;
+package com.example.youtubermanager.channel;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,6 +13,10 @@ public class ViewChannelAdapter extends FragmentPagerAdapter {
 
     ViewChannelAdapter(FragmentManager fm) {
         super(fm);
+    }
+
+    void removeItem(int postion){
+        list.remove(postion);
     }
 
     @Override
@@ -34,5 +38,4 @@ public class ViewChannelAdapter extends FragmentPagerAdapter {
         String title=list.get(position).toString();
         return title;
     }
-
 }

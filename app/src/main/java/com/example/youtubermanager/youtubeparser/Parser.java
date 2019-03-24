@@ -30,11 +30,7 @@ import com.example.youtubermanager.youtubeparser.models.videos.Item;
 import com.example.youtubermanager.youtubeparser.models.videos.Snippet;
 import com.example.youtubermanager.youtubeparser.models.videos.Video;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;

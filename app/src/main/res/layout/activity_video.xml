@@ -21,7 +21,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.youtubermanager.VideoActivity">
+    tools:context="com.example.youtubermanager.video.VideoActivity">
 
     <include layout="@layout/content_video" />
 

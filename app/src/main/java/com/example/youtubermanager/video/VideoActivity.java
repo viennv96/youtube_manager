@@ -15,7 +15,7 @@
  *
  */
 
-package com.example.youtubermanager;
+package com.example.youtubermanager.video;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -35,6 +35,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.youtubermanager.R;
 import com.example.youtubermanager.youtubeparser.Parser;
 import com.example.youtubermanager.youtubeparser.models.videos.Video;
 

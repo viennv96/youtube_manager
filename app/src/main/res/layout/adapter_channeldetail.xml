@@ -19,26 +19,36 @@
     <ImageView
         android:id="@+id/avatar_id"
         android:layout_width="0.71in"
-        android:layout_height="0.71in"
+        android:layout_height="0.66in"
         android:src="@mipmap/ic_launcher"
         android:background="@color/whiteColor"/>
     <TextView
+        android:ellipsize="end"
+        android:maxLines="1"
         android:id="@+id/name_id"
-        android:layout_width="279dp"
+        android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:text="Channel Name"
         android:textColor="@color/red"
         android:textSize="22dp"
         android:textStyle="bold"
         android:layout_marginLeft="130dp"/>
+    <ImageView
+        android:id="@+id/remove_id"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/remove"
+        android:layout_marginLeft="347dp"/>
 
     <ImageView
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:src="@drawable/ic_playlists"
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="130dp" />
+        android:layout_marginLeft="130dp"/>
     <TextView
+        android:ellipsize="end"
+        android:maxLines="1"
         android:id="@+id/playlist_id"
         android:layout_width="88dp"
         android:layout_height="wrap_content"
@@ -55,6 +65,8 @@
         android:layout_marginTop="60dp"
         android:src="@drawable/ic_views" />
     <TextView
+        android:ellipsize="end"
+        android:maxLines="1"
         android:id="@+id/view_id"
         android:layout_width="88dp"
         android:layout_height="wrap_content"
@@ -71,6 +83,8 @@
         android:layout_marginTop="90dp"
         android:src="@drawable/ic_people_black_24dp" />
     <TextView
+        android:ellipsize="end"
+        android:maxLines="1"
         android:id="@+id/subcribe_id"
         android:layout_width="88dp"
         android:layout_height="wrap_content"
@@ -86,33 +100,37 @@
         android:layout_height="25dp"
         android:src="@drawable/ic_videos"
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="245dp"/>
+        android:layout_marginLeft="255dp"/>
     <TextView
+        android:ellipsize="end"
+        android:maxLines="1"
         android:id="@+id/videos_id"
-        android:layout_width="87dp"
+        android:layout_width="88dp"
         android:layout_height="wrap_content"
         android:text="1000 views"
         android:textColor="@color/blackColor"
         android:textSize="13dp"
         android:layout_marginTop="31dp"
-        android:layout_marginLeft="275dp"/>
+        android:layout_marginLeft="285dp"/>
 
 
     <ImageView
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:layout_marginLeft="245dp"
+        android:layout_marginLeft="255dp"
         android:layout_marginTop="60dp"
         android:src="@drawable/ic_upload_date" />
     <TextView
+        android:ellipsize="end"
+        android:maxLines="1"
         android:id="@+id/date_create_id"
-        android:layout_width="115dp"
+        android:layout_width="88dp"
         android:layout_height="wrap_content"
         android:text="1000 views"
         android:textColor="@color/blackColor"
         android:textSize="13dp"
         android:layout_marginTop="62dp"
-        android:layout_marginLeft="275dp"/>
+        android:layout_marginLeft="285dp"/>
 
 
 </RelativeLayout>

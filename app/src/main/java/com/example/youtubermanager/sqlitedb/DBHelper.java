@@ -1,4 +1,4 @@
-package com.example.youtubermanager;
+package com.example.youtubermanager.sqlitedb;
 
 import android.content.Context;
 

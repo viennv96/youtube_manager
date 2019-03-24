@@ -1,4 +1,4 @@
-package com.example.youtubermanager;
+package com.example.youtubermanager.channel.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,15 +10,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
+
+import com.example.youtubermanager.sqlitedb.DBAccess;
+import com.example.youtubermanager.channel.YoutubeChannelAdapter;
+import com.example.youtubermanager.R;
+import com.example.youtubermanager.entity.YoutubeChannel;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class SuspendFragment extends Fragment {
+public class LiveFragment extends Fragment {
     private RecyclerView recyclerView;
-    private List<YoutubeChannel> listChannel = new ArrayList<>();
-    private final String TITLE = "DIE";
+    private ArrayList<YoutubeChannel> listChannel = new ArrayList<>();
+    private final String TITLE = "LIVE";
     View view;
 
     @Nullable
@@ -32,14 +35,29 @@ public class SuspendFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(null));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setHasFixedSize(true);
-        YoutubeChannelAdapter channelAdapter = new YoutubeChannelAdapter(this.getActivity(), listChannel, R.layout.adapter_channeldetail);
+        final YoutubeChannelAdapter channelAdapter = new YoutubeChannelAdapter(this.getActivity(), listChannel, R.layout.adapter_channeldetail);
         recyclerView.setAdapter(channelAdapter);
+        channelAdapter.setOnItemClickListener(new YoutubeChannelAdapter.OnItemClickListener() {
+            @Override
+            public void onClickOpenItem(int position) {
+                channelAdapter.openItem(position);
+            }
+
+            @Override
+            public void onClickRemoveItem(int position) {
+                DBAccess dbAccess = DBAccess.getInstance(getContext());
+                dbAccess.deleteChannel(listChannel.get(position).getUrlChannel());
+                listChannel.remove(position);
+                channelAdapter.notifyDataSetChanged();
+            }
+        });
+
         return view;
     }
 
     @Override
     public String toString() {
-        String title="SUSPEND";
+        String title=TITLE;
         return title;
     }
 }
