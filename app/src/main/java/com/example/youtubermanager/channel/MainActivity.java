@@ -1,6 +1,7 @@
 package com.example.youtubermanager.channel;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -27,6 +28,7 @@ import com.example.youtubermanager.channel.fragment.SuspendFragment;
 import com.example.youtubermanager.channel.fragment.TotalFragment;
 import com.example.youtubermanager.login.Login;
 import com.example.youtubermanager.profile.Profile;
+import com.example.youtubermanager.service.UpdateAndNotificationService;
 import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener,NavigationView.OnNavigationItemSelectedListener{
@@ -59,6 +61,13 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        //run service
+        Intent intent = new Intent(this, UpdateAndNotificationService.class);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(intent);
+        }else{
+            startService(intent);
+        }
 
         //view page
         viewPager = findViewById(R.id.viewPage_id);
