@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.youtubermanager.R;
+import com.example.youtubermanager.User;
 import com.example.youtubermanager.channel.MainActivity;
 import com.example.youtubermanager.entity.YoutubeChannel;
 import com.example.youtubermanager.sqlitedb.DBAccess;
@@ -23,14 +26,18 @@ public class AddActivity extends AppCompatActivity {
     private TextView txtInput;
     private Button btnImport;
     private ProgressBar progressBar;
+    private User user;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         txtInput = findViewById(R.id.input_id);
         btnImport = findViewById(R.id.btnImport);
+        user = (User)getIntent().getSerializableExtra("user");
         btnImport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,9 +89,11 @@ public class AddActivity extends AppCompatActivity {
                 }
             });
         }
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("user",user);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+
     }
 }
 
