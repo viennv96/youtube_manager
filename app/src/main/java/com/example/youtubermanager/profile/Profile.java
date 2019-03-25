@@ -1,5 +1,6 @@
 package com.example.youtubermanager.profile;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
@@ -24,6 +25,10 @@ public class Profile extends AppCompatActivity {
     private TextView accountType;
     private ImageView avartar;
     private Button button;
+    private Button btnLogout;
+    private Dialog dialog;
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +40,7 @@ public class Profile extends AppCompatActivity {
         accountType = findViewById(R.id.tvTypeAccount);
         avartar = findViewById(R.id.avartar);
         button = findViewById(R.id.btnBack);
+        btnLogout = findViewById(R.id.btnLogout);
         user = (User)getIntent().getSerializableExtra("user");
         if(user != null){
             username.setText(user.getName());
@@ -60,5 +66,16 @@ public class Profile extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                User user = new User();
+                intent.putExtra("user",user);
+                startActivity(intent);
+            }
+        });
     }
+
 }

@@ -5,13 +5,17 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.youtubermanager.R;
+import com.example.youtubermanager.UserModel;
 import com.example.youtubermanager.channel.MainActivity;
 import com.example.youtubermanager.User;
 import com.facebook.AccessToken;
@@ -27,9 +31,13 @@ import com.facebook.login.LoginResult;
 import org.json.JSONObject;
 
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Login extends AppCompatActivity {
+    private TextView textlink;
     private Button btnLogin;
     private TextView tvName;
     private TextView tvEmail;
@@ -38,20 +46,22 @@ public class Login extends AppCompatActivity {
     private static Login loginActivity;
     private CallbackManager callbackManager;
     private FacebookCallback<LoginResult> loginResult;
+    private UserModel userModel;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        textlink = (TextView) findViewById(R.id.textlink);
        btnLogin = (Button)findViewById(R.id.btnLogin);
        userName = findViewById(R.id.editText);
        password = findViewById(R.id.editText2);
+
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
-        loginActivity = this;
-        initFaceBook();
+      //  loginActivity = this;
+     //   initFaceBook();
         LoginManager.getInstance().registerCallback(callbackManager, loginResult);
         Button fbLogin = (Button) findViewById(R.id.login_button);
         fbLogin.setOnClickListener(new View.OnClickListener() {
@@ -64,13 +74,33 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // get user info from database to check here
+                userModel = new UserModel();
                 String username = userName.getText().toString();
                 String pass = "";
                 pass = password.getText().toString();
-                User user = new User("",username,pass,0,1,"");
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("user",user);
+                List<User> list = new ArrayList<>();
+                try {
+                    list = userModel.getuser(username,pass);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                if (list.size() > 0) {
+                    User user = list.get(0);
+                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("user",user);
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(),"Email or password is incorrect!",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+        textlink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Register.class);
                 startActivity(intent);
             }
         });
