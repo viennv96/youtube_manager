@@ -60,8 +60,8 @@ public class Login extends AppCompatActivity {
 
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
-      //  loginActivity = this;
-     //   initFaceBook();
+        loginActivity = this;
+        initFaceBook();
         LoginManager.getInstance().registerCallback(callbackManager, loginResult);
         Button fbLogin = (Button) findViewById(R.id.login_button);
         fbLogin.setOnClickListener(new View.OnClickListener() {

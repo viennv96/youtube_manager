@@ -35,7 +35,7 @@ public class UserModel {
         List<User> list = new ArrayList<>();
         User user = new User();
         Statement statement = connection.createStatement();// Tạo đối tượng Statement.
-        String sql = "select * from AccountTBL where [email] = '" + email+ "' and [password] = '" + password + "'";
+        String sql = "select * from AccountTBL where [email] = '"+email+"' and [Password] ='"+password+"'";
         // Thực thi câu lệnh SQL trả về đối tượng ResultSet. // Mọi kết quả trả về sẽ được lưu trong ResultSet
         ResultSet rs = statement.executeQuery(sql);
         while (rs.next()) {
